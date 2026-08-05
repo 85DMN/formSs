@@ -10,12 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch(error) {
     console.log(error);
   }
-  
-  if(formData) {
-    Object.keys(formData).forEach((key) => {
-      form.querySelector(`[name="${key}"]`).value = formData[key];//выдаем данные в форму загруженную вновь
-    });
-  }
 
   const form = document.querySelector('.form');
 
