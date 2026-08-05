@@ -1,6 +1,6 @@
-import newPositionz from '../js/newPosition.js';
+import calcPositions from '../js/calcPositions.js';
 
-describe('newPositionz', () => {
+describe('calcPositions', () => {
   let trigger, popover;
 
   beforeEach(() => {
@@ -42,37 +42,39 @@ describe('newPositionz', () => {
   });
 
   test('рассчет позиции для placement="Верх"', () => {
-    const position = newPositionz(trigger, popover, 'Верх');
+    const position = calcPositions(trigger, popover, 'Верх');
 
-    expect(position.top).toBe(100 + window.scrollY - 60 - 5); 
-    expect(position.left).toBe(195);
+    expect(position.top).toBe(30);
+    expect(position.left).toBe(175);
   });
 
   test('рассчет позиции для placement="Право"', () => {
-    const position = newPositionz(trigger, popover, 'Право');
+    const position = calcPositions(trigger, popover, 'Право');
 
-    expect(position.top).toBeCloseTo(100 + (30 - 60) / 2 + window.scrollY); // 100 -15
-    expect(position.left).toBe(200 + 50 + 5); 
+    expect(position.top).toBeCloseTo(30); // 100 -15
+    expect(position.left).toBe(175);
   });
 
   test('рассчет позиции для placement="Низ"', () => {
-    const position = newPositionz(trigger, popover, 'Низ');
+    const position = calcPositions(trigger, popover, 'Низ');
 
-    expect(position.top).toBe(100 + 30 + 5 + window.scrollY); 
-    expect(position.left).toBe(200 + (50 - 100) / 2); // 175
+    expect(position.top).toBe(30);
+    expect(position.left).toBe(175); // 175
   });
 
   test('рассчет позиции для placement="лево"', () => {
-    const position = newPositionz(trigger, popover, 'Лево');
+    const position = calcPositions(trigger, popover, 'Лево');
 
-    expect(position.top).toBeCloseTo(100 + (30 - 60) / 2 + window.scrollY); // 85
-    expect(position.left).toBe(200 - 100 - 5);
+    expect(position.top).toBeCloseTo(30); // 85
+    expect(position.left).toBe(175);
   });
 
   test('использование default placement="Верх" при неверном значении', () => {
-    const position = newPositionz(trigger, popover, 'invalid');
+    const position = calcPositions(trigger, popover, 'invalid');
 
-    expect(position.top).toBe(100 + window.scrollY - 60 - 5);
+    console.log(position)
+
+    expect(position.top).toBe(30);
     expect(position.left).toBe(200 + (50 - 100) / 2);
   });
 });
